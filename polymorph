@@ -1,0 +1,66 @@
+namespace ConsoleApp2
+{
+
+    class BASE
+    {
+        public virtual void basefun()
+        {
+
+            Console.WriteLine("this is base class");
+        }
+    }
+        class DERIVED : BASE
+        {
+            public override void basefun()
+            {
+
+                Console.WriteLine("this is derived class");
+            }
+        }
+    }
+    
+    namespace Consoleanother
+{
+    using ConsoleApp2;
+
+    class classfactory
+    {
+        public static BASE getobject(string a)
+        {
+            if (a.ToUpper() == "BASE")
+            {
+                return new BASE();
+
+            }
+            else if (a.ToUpper() == "DERIVED")
+            { return new DERIVED(); }
+            else
+            {
+                throw new Exception("Invalid Class type");
+            }
+
+        }
+
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Which class U want to implement: Base or Derived");
+            string answer = Console.ReadLine();
+
+            BASE cls = classfactory.getobject(answer);
+            cls.basefun();
+
+
+        }
+    }
+}
+
+
+
+
+
+}
+  
